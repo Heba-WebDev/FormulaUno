@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Navbar from './Components/Navbar'
 
 function App() {
+
+  const [races, setRaces] = React.useState([]);
+ 
+
+  // React.useEffect( async () => {
+  //  await fetch('http://ergast.com/api/f1/current ')
+  //  .then(response => response.json())
+  //  .then(data => {
+  //    console.log(data)
+  //  })
+  //  .catch(error => console.log(error))
+  // }, [])
+
+  React.useEffect(() => {
+   fetch('http://ergast.com/api/f1/current/driverStandings')
+    .then(response => response.text())
+    .then(data => {
+      
+      console.log(data);
+      
+    })
+     .catch(error => console.log(error))
+  },[])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+     <Navbar />
     </div>
   );
 }
