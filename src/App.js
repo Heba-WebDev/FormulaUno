@@ -16,8 +16,8 @@ function App() {
   // }, [])
 
   React.useEffect(() => {
-   fetch('http://ergast.com/api/f1/current/driverStandings')
-    .then(response => response.text())
+   fetch('http://ergast.com/api/f1/current/driverStandings.json')
+    .then(response => response.json())
     .then(data => {
       
       console.log(data);
