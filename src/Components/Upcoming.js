@@ -9,25 +9,26 @@ export default function Upcoming(props) {
         <>
          <h1>Coming race</h1>
          
-        
 
-                 
-           {/* {props.nextRace.map((race) => { */}
-        {/* //        return ( */}
-
-        {/* //    <div key={race}>
-        //       {race}
-        //    </div>
-        //        )
-                   
-               
-        //    })}
-             */}
-           
              
-            
+        
+        {props.nextRace.length != 0 && 
+        
+        <div>
+            <p>{props.nextRace.date}</p>
+        <p>{props.nextRace.raceName}</p>
+        <p>{props.nextRace.Circuit.Location.country}</p>
+        
+        </div>
+        }
 
-
+       
+       {props.nextRace.length == 0 && 
+       
+       <div>
+           <p>End of calnder year</p>
+       </div>
+       }
         
         </>
        
