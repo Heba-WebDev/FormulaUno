@@ -10,6 +10,7 @@ module.exports = {
     extend: {
       fontFamily: {
         'rubik-glitch': ['"Rubik Glitch"'],
+        'roboto': ['Roboto'],
       }
     },
   },

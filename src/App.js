@@ -33,7 +33,7 @@ function App() {
   return (
     <div className="container mx-auto">
      <Navbar />
-     {/* <Upcoming nextRace={nextRace}/> */}
+    <Upcoming nextRace={nextRace}/> 
     </div>
   );
 }
