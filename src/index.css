@@ -3,5 +3,13 @@
 @tailwind utilities;
 
 body {
-    background-color: rgb(245 245 244);
+    background-color: rgb(255 237 213);
+}
+
+
+.border {
+    border-bottom: 5px solid rgb(251 146 60);
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
 }
