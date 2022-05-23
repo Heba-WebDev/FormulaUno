@@ -1,11 +1,12 @@
 import Hamburger from '../icon-hamburger.svg'
 
 export default function Navbar() {
+    //font-rubik-glitch
 
     return (
         <nav className='flex justify-between py-4'>
-
-            <h3 className='font-rubik-glitch text-gray-400'>FormulaUNO</h3>
+   
+            <h3 className='text-gray-400'>FormulaUNO</h3>
 
             <img src={Hamburger} alt='mobile menu icon'/>
             

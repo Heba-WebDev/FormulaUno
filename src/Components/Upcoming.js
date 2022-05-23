@@ -22,7 +22,7 @@ export default function Upcoming(props) {
               <small className='text-sm text-gray-300'>{props.nextRace.date.split('-').reverse().join('-')}</small>
           </div>
              
-          <div className='flex justify-center flex-col m-auto'>
+          <div className='flex flex-col '>
               <h1 className='text-4xl tracking-wide text-white'>{props.nextRace.raceName}</h1>
               
               
