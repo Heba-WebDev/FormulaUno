@@ -7,6 +7,9 @@ export default function Standings(props) {
     props.setDriversOrConstructers(prev => !prev)
   }
 
+  const topThreeDrivers = props.drivesStanding.slice(0,3);
+  const topThreeConstructors = props.constructorsStanding.slice(0,3);
+
   return (
 
     <div className='flex flex-col bg-white rounded p-3 w-full border-solid border-black border-2'>
@@ -29,7 +32,7 @@ export default function Standings(props) {
     <div className='p-3'>
         {props.driversOrConstructers && 
         
-        props.drivesStanding.map((driver) => {
+        topThreeDrivers.map((driver) => {
            return (
                <div key={driver.Driver.driverId} className='text-left flex gap-x-1 justify-around 
                content-start border-solid border-gray border-2'>
@@ -51,10 +54,10 @@ export default function Standings(props) {
         </div>
 
 
-        <div className='p-3'>
+        <div className='p-2'>
         {!props.driversOrConstructers && 
         
-        props.constructorsStanding.map((constructor) => {
+        topThreeConstructors.map((constructor) => {
            return (
                <div key={constructor.Constructor.constructorId} className='text-left flex gap-x-1 justify-around 
                content-start border-solid border-gray border-2'>
