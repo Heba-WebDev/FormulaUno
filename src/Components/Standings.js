@@ -12,7 +12,7 @@ export default function Standings(props) {
 
   return (
 
-    <div className='flex flex-col bg-white rounded p-3 w-full border-solid border-black border-2'>
+    <div className='flex flex-col bg-white rounded p-3 '>
 
       <div>
         <h2 className='text-3xl border-solid border-black border-2
@@ -34,16 +34,16 @@ export default function Standings(props) {
         
         topThreeDrivers.map((driver) => {
            return (
-               <div key={driver.Driver.driverId} className='text-left flex gap-x-1 justify-around 
-               content-start border-solid border-gray border-2'>
+               <div key={driver.Driver.driverId} className='bg-slate-50 text-left flex  gap-x-1 
+               content-start mb-1'>
               
-              <div className=' w-full p-1'>
+              <div className=' w-full p-1 flex justify-center'>
               <p className=''>{driver.position}</p>
               </div>
-            <div className='w-full p-1'>
+            <div className='w-full p-1 flex justify-center'>
             <p>{driver.Driver.givenName} {driver.Driver.familyName}</p>
             </div>
-              <div className='w-full p-1'>
+              <div className='w-full p-1 flex justify-center'>
               <small>{driver.points} point</small>
               </div>
                    
@@ -54,23 +54,23 @@ export default function Standings(props) {
         </div>
 
 
-        <div className='p-2'>
+        <div className='p-3'>
         {!props.driversOrConstructers && 
         
         topThreeConstructors.map((constructor) => {
            return (
-               <div key={constructor.Constructor.constructorId} className='text-left flex gap-x-1 justify-around 
-               content-start border-solid border-gray border-2'>
+               <div key={constructor.Constructor.constructorId} className='bg-slate-50 text-left flex gap-x-1 
+             mb-1'>
               
-              <div className=' w-full p-1'>
+              <div className=' w-full p-1 flex justify-center'>
               <p className=''>{constructor.position}</p>
               </div>
 
-              <div className='w-full p-1'>
+              <div className='w-full p-1 flex justify-center'>
                <p>{constructor.Constructor.name}</p>
                </div>
                
-               <div className='w-full p-1'>
+               <div className='w-full p-1 flex justify-center'>
               <small>{constructor.points} point</small>
               </div>
 
@@ -81,6 +81,38 @@ export default function Standings(props) {
            )
         })
         }
+
+
+        <div>
+
+            
+          {props.driversOrConstructers &&
+          
+          
+          <div>
+            <small className='flex justify-end'>Full standing</small>
+          </div>
+          
+          }
+          
+        </div>
+        
+        <div>
+
+            
+{!props.driversOrConstructers &&
+
+
+<div>
+  <small className='flex justify-end mt-5'>Full standing</small>
+</div>
+
+}
+
+</div>
+
+
+        
         </div>
     
 
