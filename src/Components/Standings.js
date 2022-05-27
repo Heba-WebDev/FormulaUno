@@ -12,11 +12,11 @@ export default function Standings(props) {
 
   return (
 
-    <div className='bg-zinc-100 rounded p-4 '>
+    <div className='bg-zinc-100 rounded p-4 flex flex-col'>
 
      
      {/* 1 */}
-    <div className='flex gap-12 text-l p-3 bg-zinc-50 rounded justify-around'>
+    <div className='flex gap-1 text-l p-3 bg-zinc-50 rounded justify-around mb-6'>
         <div className=''>
         <h3 className={props.driversOrConstructers ? 'selected' : 'text-gray-300'} onClick={changeStandings}>Drivers</h3>
         </div>
@@ -28,7 +28,7 @@ export default function Standings(props) {
 
     {/* 2 */}
     
-    <div className='p-3'>
+    <div className=''>
         {props.driversOrConstructers && 
         
         topThreeDrivers.map((driver) => {
@@ -56,7 +56,7 @@ export default function Standings(props) {
 
 {/* 3 */}
 
-<div className='p-3'>
+<div className=''>
 {!props.driversOrConstructers && 
         
         topThreeConstructors.map((constructor) => {
@@ -87,8 +87,8 @@ export default function Standings(props) {
           {props.driversOrConstructers &&
           
           
-          <div>
-            <small className='flex justify-end'>Full standing</small>
+          <div className='mt-6'>
+            <small className='flex justify-center text-xs bg-emerald-600 text-white py-1 px-1.5 rounded'>Full standing</small>
           </div>
           
           }
@@ -101,8 +101,8 @@ export default function Standings(props) {
 {!props.driversOrConstructers &&
 
 
-<div>
-  <small className='flex justify-end'>Full standing</small>
+<div className='mt-6'> 
+  <small className='flex justify-center text-xs bg-emerald-600 text-white py-1 px-1.5 rounded'>Full standing</small>
 </div>
 
 }
@@ -114,6 +114,13 @@ export default function Standings(props) {
         </div>
     
 
+
+     
+
+
     </div>
   )
+
+
+  
 }

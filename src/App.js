@@ -2,6 +2,8 @@ import React from 'react'
 import Navbar from './Components/Navbar'
 import Upcoming from './Components/Upcoming'
 import Standings from './Components/Standings';
+import LatestResults from './Components/LatestResults';
+
 
 function App() {
 
@@ -12,6 +14,7 @@ function App() {
   //when the app loads on, it will show the drivers standing, user can then 
   //change to constructer standings and the state will go from true to false
   const [driversOrConstructers, setDriversOrConstructers] = React.useState(true);
+  const [latestResults, setLatestResults] = React.useState([]);
  
   let today = new Date();
   let todaysDate = `${today.getFullYear()}-${today.getMonth()+1 < 10 ? `0${today.getMonth()+1}` : `${today.getMonth()+1}`}-${today.getDate()}`;
@@ -39,8 +42,18 @@ function App() {
     fetch('http://ergast.com/api/f1/current/constructorStandings.json')
     .then(response => response.json())
     .then(data => {
-   console.log(data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings)
+  // console.log(data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings)
      setConstructorsStanding(data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings)
+    })
+  },[])
+
+  React.useEffect(() => {
+    fetch('http://ergast.com/api/f1/current/last/results.json')
+    .then(response => response.json())
+    .then(data => {
+   console.log(data.MRData.RaceTable.Races[0])
+   setLatestResults(data.MRData.RaceTable.Races[0].Results)
+     
     })
   },[])
   
@@ -62,7 +75,10 @@ function App() {
     setDriversOrConstructers={setDriversOrConstructers}
     driversOrConstructers={driversOrConstructers}
     />
+    <LatestResults latestResults={latestResults}/>
     </div>
+
+    
   );
 }
 
