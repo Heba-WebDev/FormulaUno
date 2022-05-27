@@ -51,7 +51,7 @@ function App() {
     fetch('http://ergast.com/api/f1/current/last/results.json')
     .then(response => response.json())
     .then(data => {
-   console.log(data.MRData.RaceTable.Races[0])
+   console.log(data.MRData.RaceTable.Races[0].Results)
    setLatestResults(data.MRData.RaceTable.Races[0].Results)
      
     })
