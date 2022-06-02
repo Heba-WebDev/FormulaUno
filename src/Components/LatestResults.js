@@ -23,13 +23,13 @@ return (
         
         {topTwo.map((driver) => {
             return (
-                <div key={driver.Driver.driverId} className='self-end flex'>
+                <div key={driver.Driver.driverId} className='self-end flex justify-center self-end'>
 
-          <div className='bg-zinc-100 flex flex-col p-4'>
+          <div className='bg-zinc-100 flex flex-col p-6 justify-center gap-y-1'>
            
-           <small>{driver.position}</small>
-           <p>{driver.Driver.code}</p>
-           <small>{driver.Constructor.name}</small>
+           <small className='text-2xl self-center'>{driver.position}</small>
+           <p className='text-4xl self-center'>{driver.Driver.code}</p>
+           <small className='self-center'>{driver.Constructor.name}</small>
           </div>
 
        
@@ -42,13 +42,13 @@ return (
 
         {topOne.map((driver) => {
             return (
-                <div key={driver.Driver.driverId} className='self-center flex'>
+                <div key={driver.Driver.driverId} className='self-center'>
 
-          <div className='bg-zinc-100 flex flex-col p-4'>
+          <div className='bg-zinc-100 flex flex-col p-6 justify-center gap-y-1'>
            
-           <small>{driver.position}</small>
-           <p>{driver.Driver.code}</p>
-           <small>{driver.Constructor.name}</small>
+           <small className='text-2xl self-center'>{driver.position}</small>
+           <p className='text-4xl self-center'>{driver.Driver.code}</p>
+           <small className='self-center'>{driver.Constructor.name}</small>
           </div>
 
        
@@ -61,11 +61,11 @@ return (
             return (
                 <div key={driver.Driver.driverId} className='self-end flex'>
 
-          <div className='bg-zinc-100 flex flex-col p-4'>
+          <div className='bg-zinc-100 flex flex-col p-6 justify-center gap-y-1'>
            
-           <small>{driver.position}</small>
-           <p>{driver.Driver.code}</p>
-           <small>{driver.Constructor.name}</small>
+           <small className='text-3xl self-center'>{driver.position}</small>
+           <p className=' text-4xl self-center'>{driver.Driver.code}</p>
+           <small className='self-center'>{driver.Constructor.name}</small>
           </div>
 
        

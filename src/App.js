@@ -17,7 +17,8 @@ function App() {
   const [latestResults, setLatestResults] = React.useState([]);
  
   let today = new Date();
-  let todaysDate = `${today.getFullYear()}-${today.getMonth()+1 < 10 ? `0${today.getMonth()+1}` : `${today.getMonth()+1}`}-${today.getDate()}`;
+  let todaysDate = `${today.getFullYear()}-${today.getMonth()+1 < 10 ? `0${today.getMonth()+1}` : `${today.getMonth()+1}`}-${today.getDate() < 10 ? `0${today.getDate()}` : `${today.getDate()}`}`;
+
   
   React.useEffect(() => {
    fetch('http://ergast.com/api/f1/current.json')
