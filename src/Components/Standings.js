@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 export default function Standings(props) {
 
@@ -87,9 +88,9 @@ export default function Standings(props) {
           {props.driversOrConstructers &&
           
           
-          <div className='mt-6'>
+          <Link className='mt-6' to='/driver-standings'>
             <small className='flex justify-center text-xs bg-emerald-600 text-white py-1 px-1.5 rounded'>Full standing</small>
-          </div>
+          </Link>
           
           }
           
@@ -101,9 +102,9 @@ export default function Standings(props) {
 {!props.driversOrConstructers &&
 
 
-<div className='mt-6'> 
+<Link to='/constructor-standings' className='mt-6'> 
   <small className='flex justify-center text-xs bg-emerald-600 text-white py-1 px-1.5 rounded'>Full standing</small>
-</div>
+</Link>
 
 }
 

@@ -1,3 +1,4 @@
+import React from 'react'
 import Hamburger from '../icon-hamburger.svg'
 
 export default function Navbar() {

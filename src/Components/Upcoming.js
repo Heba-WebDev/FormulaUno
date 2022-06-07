@@ -11,7 +11,7 @@ export default function Upcoming(props) {
          
           
         
-        {props.nextRace.length != 0 && 
+        {props.nextRace.length !== 0 && 
         
         <div className='container max-auto flex flex-col
         p-5 rounded text-white bg-emerald-900 font-roboto gap-y-4'>
@@ -31,7 +31,7 @@ export default function Upcoming(props) {
         }
 
        
-       {props.nextRace.length == 0 && 
+       {props.nextRace.length === 0 && 
        
        <div>
            <p>End of calnder year</p>
