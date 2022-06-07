@@ -3,6 +3,7 @@ import Navbar from './Components/Navbar'
 import Upcoming from './Components/Upcoming'
 import Standings from './Components/Standings';
 import LatestResults from './Components/LatestResults';
+import Calender from './Components/Calender';
 
 
 function App() {
@@ -77,8 +78,9 @@ function App() {
     driversOrConstructers={driversOrConstructers}
     />
     <LatestResults latestResults={latestResults}/>
+    <Calender />
     </div>
-
+   
     
   );
 }
