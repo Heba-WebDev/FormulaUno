@@ -69,8 +69,8 @@ function App() {
 
 
   return (
-    <div className="container mx-auto gap-y-3 flex flex-col p-3">
-     <Navbar />
+    <div className="container mx-auto gap-y-3 flex flex-col">
+     
     <Upcoming nextRace={nextRace}/> 
     <Standings 
     drivesStanding={drivesStanding} 

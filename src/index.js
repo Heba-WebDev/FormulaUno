@@ -6,17 +6,19 @@ import reportWebVitals from './reportWebVitals';
 import DriverStandings from './Components/DriverStandings';
 import ConstructorStandings from './Components/ConstructorStandings';
 import FullCalender from './Components/FullCalendar';
+import Navbar from './Components/Navbar';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
   <Routes>
-  <Route path='/' element={<App />} />
+  <Route path='/' element={<Navbar />}>
+  <Route index element={<App />} />
   <Route path="driver-standings" element={<DriverStandings />} />
   <Route path="constructor-standings" element={<ConstructorStandings />} />
   <Route path="calendar" element={<FullCalender />} />
- 
+  </Route>
   </Routes>
   </BrowserRouter>
 );

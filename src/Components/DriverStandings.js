@@ -13,7 +13,7 @@ export default function DriverStandings() {
         .catch(error => console.log(error))
       },[])
 return (
-   <div className='container p-6 m-auto'>
+   <div className='container  m-auto'>
 
       {drivesStanding.map((driver) => {
           return (

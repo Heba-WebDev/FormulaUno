@@ -16,7 +16,7 @@ export default function FullCalender() {
        },[])
 
     return (
-        <div className='container p-6 m-auto'>
+        <div className='container m-auto'>
 
       {races.map((race) => {
           return (

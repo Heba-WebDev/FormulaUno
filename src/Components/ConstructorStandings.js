@@ -14,7 +14,7 @@ export default function ConstructorStandings(props) {
 
 return (
    
-<div className='container p-6 m-auto'>
+<div className='container m-auto'>
 
 {constructorsStanding.map((constructor) => {
     return (
