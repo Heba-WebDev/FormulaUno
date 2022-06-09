@@ -4,11 +4,6 @@ import Upcoming from './Components/Upcoming'
 import Standings from './Components/Standings';
 import LatestResults from './Components/LatestResults';
 import Calender from './Components/Calender';
-import {
-  Link,
-  Routes,
-  Route,
-} from "react-router-dom";
 
 
 function App() {
@@ -30,6 +25,7 @@ function App() {
    fetch('http://ergast.com/api/f1/current.json')
     .then(response => response.json())
     .then(data => {
+      console.log(data.MRData.RaceTable.Races)
       setRaces(data.MRData.RaceTable.Races);
     })
      .catch(error => console.log(error))
@@ -58,7 +54,7 @@ function App() {
     fetch('http://ergast.com/api/f1/current/last/results.json')
     .then(response => response.json())
     .then(data => {
-   console.log(data.MRData.RaceTable.Races[0].Results)
+  
    setLatestResults(data.MRData.RaceTable.Races[0].Results)
      
     })
