@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 export default function Upcoming(props) {
 
@@ -6,7 +7,7 @@ export default function Upcoming(props) {
     
     
     return (
-        <>
+        <Link to='next-race'>
         
          
           
@@ -38,7 +39,7 @@ export default function Upcoming(props) {
        </div>
        }
         
-        </>
+        </Link>
        
     )
 }

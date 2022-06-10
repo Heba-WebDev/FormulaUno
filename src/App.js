@@ -1,5 +1,4 @@
 import React from 'react'
-import Navbar from './Components/Navbar'
 import Upcoming from './Components/Upcoming'
 import Standings from './Components/Standings';
 import LatestResults from './Components/LatestResults';
@@ -25,7 +24,6 @@ function App() {
    fetch('http://ergast.com/api/f1/current.json')
     .then(response => response.json())
     .then(data => {
-      console.log(data.MRData.RaceTable.Races)
       setRaces(data.MRData.RaceTable.Races);
     })
      .catch(error => console.log(error))
@@ -63,6 +61,7 @@ function App() {
   for(let i=0; i < races.length; i++) {
     if(races[i].date > todaysDate) {
       nextRace = races[i];
+      console.log(nextRace)
       break;
     }
   }
