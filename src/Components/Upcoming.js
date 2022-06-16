@@ -3,11 +3,13 @@ import {Link} from 'react-router-dom'
 
 export default function Upcoming(props) {
 
+    let details = props.nextRace.date;
 
+//to='next-race'
     
-    
+    const raceDetails = props.nextRace.date;
     return (
-        <Link to='next-race'>
+        <Link  to='next-race'>
         
          
           

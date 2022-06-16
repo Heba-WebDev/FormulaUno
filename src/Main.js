@@ -1,14 +1,11 @@
 import React from 'react'
-import Main from './Main'
-import DriverStandings from './Components/DriverStandings';
-import ConstructorStandings from './Components/ConstructorStandings';
-import FullCalender from './Components/FullCalendar';
-import NextRace from './Components/NextRace';
-import Navbar from './Components/Navbar';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Upcoming from './Components/Upcoming'
+import Standings from './Components/Standings';
+import LatestResults from './Components/LatestResults';
+import Calender from './Components/Calender';
 
 
-function App() {
+function Main() {
 
   const [races, setRaces] = React.useState([]);
   let nextRace = [];
@@ -69,21 +66,23 @@ function App() {
     }
   }
 
+
   return (
-    <BrowserRouter>
-    <Routes>
-    <Route path='/' element={<Navbar />}>
-    <Route index element={<Main />} />
-    <Route path="next-race" element={<NextRace date={nextRace.date}/>} />
-    <Route path="driver-standings" element={<DriverStandings />} />
-    <Route path="constructor-standings" element={<ConstructorStandings />} />
-    <Route path="calendar" element={<FullCalender />} />
-    </Route>
-    </Routes>
-    </BrowserRouter>
+    <div className="container mx-auto gap-y-3 flex flex-col">
+     
+    <Upcoming nextRace={nextRace}/> 
+    <Standings 
+    drivesStanding={drivesStanding} 
+    constructorsStanding={constructorsStanding} 
+    setDriversOrConstructers={setDriversOrConstructers}
+    driversOrConstructers={driversOrConstructers}
+    />
+    <LatestResults latestResults={latestResults}/>
+    <Calender />
+    </div>
    
     
   );
 }
 
-export default App;
+export default Main;

@@ -3,30 +3,12 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import DriverStandings from './Components/DriverStandings';
-import ConstructorStandings from './Components/ConstructorStandings';
-import FullCalender from './Components/FullCalendar';
-import NextRace from './Components/NextRace';
-import Navbar from './Components/Navbar';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-
-  
-  <BrowserRouter>
-  <Routes>
-  <Route path='/' element={<Navbar />}>
-  <Route index element={<App />} />
-  <Route path="next-race" element={<NextRace />} />
-  <Route path="driver-standings" element={<DriverStandings />} />
-  <Route path="constructor-standings" element={<ConstructorStandings />} />
-  <Route path="calendar" element={<FullCalender />} />
-  </Route>
-  </Routes>
-  </BrowserRouter>
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
