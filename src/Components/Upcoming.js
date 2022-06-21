@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 export default function Upcoming(props) {
 
-    let details = props.nextRace.date;
+    
 
 //to='next-race'
     

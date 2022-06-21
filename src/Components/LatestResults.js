@@ -11,7 +11,7 @@ return (
     <div className='grid bg-zinc-50 rounded p-4'>
 
       <div className='text-center tracking-widest leading-3 uppercase'>
-          <h3 className='border text-center pb-1'>Latest results</h3>
+          <h3 className='border text-center pb-1'>Latest results: <span className='text-sm'>{props.lastRace}</span></h3>
       </div>
         
 
@@ -74,9 +74,9 @@ return (
             )
         })} 
        
-
+      
        </div>
-
+        
 </div>
 
   

@@ -15,6 +15,7 @@ function Main() {
   //change to constructer standings and the state will go from true to false
   const [driversOrConstructers, setDriversOrConstructers] = React.useState(true);
   const [latestResults, setLatestResults] = React.useState([]);
+  const [lastRace, setLastRace] = React.useState('');
  
   let today = new Date();
   let todaysDate = `${today.getFullYear()}-${today.getMonth()+1 < 10 ? `0${today.getMonth()+1}` : `${today.getMonth()+1}`}-${today.getDate() < 10 ? `0${today.getDate()}` : `${today.getDate()}`}`;
@@ -54,7 +55,7 @@ function Main() {
     .then(data => {
   
    setLatestResults(data.MRData.RaceTable.Races[0].Results)
-     
+   setLastRace(data.MRData.RaceTable.Races[0].raceName)
     })
   },[])
   
@@ -77,7 +78,7 @@ function Main() {
     setDriversOrConstructers={setDriversOrConstructers}
     driversOrConstructers={driversOrConstructers}
     />
-    <LatestResults latestResults={latestResults}/>
+    <LatestResults latestResults={latestResults} lastRace={lastRace}/>
     <Calender />
     </div>
    

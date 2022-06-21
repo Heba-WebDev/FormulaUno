@@ -1,11 +1,11 @@
 import React from 'react';
 
 
-export default function FullCalender() {
+export default function FullCalender(props) {
 
-
+   const racesArr = props.races.races;
     const [races, setRaces] = React.useState([]);
-
+    
     React.useEffect(() => {
         fetch('http://ergast.com/api/f1/current.json')
          .then(response => response.json())
