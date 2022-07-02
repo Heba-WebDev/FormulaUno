@@ -20,7 +20,8 @@ export default function Upcoming(props) {
 //console.log(daysLeftInMonth);
     
 
-    const raceDetails = props.nextRace.date;
+   // const raceDetails = props.nextRace.date;
+    
    
     return (
         <Link  to='next-race'>
@@ -48,24 +49,24 @@ export default function Upcoming(props) {
           </div> 
      {/* {console.log((new Date(currentYear, 0+1, 0)).getDate())} */}
           
-          <div className='self-center flex gap-x-3'>
+          <div className='flex gap-x-3'>
 
-          <div className='flex gap-x-1 bg-green-500 text-green-100 p-1 rounded'>
+          <div className='flex flex-col gap-x-1 bg-green-500 text-green-100 p-1 rounded'>
           <span>{props.remaingTime.days}</span>
           <span>Days</span>
           </div>
 
-          <div className='flex gap-x-1 bg-green-500 text-green-100 p-1 rounded'>
+          <div className='flex flex-col gap-x-1 bg-green-500 text-green-100 p-1 rounded'>
           <span>{props.remaingTime.hours}</span>
           <span>Hours</span>
           </div>
           
-          <div className='flex gap-x-1 bg-green-500 text-green-100 p-1 rounded'>
+          <div className='flex flex-col gap-x-1 bg-green-500 text-green-100 p-1 rounded'>
           <span>{props.remaingTime.minutes}</span>
           <span>Minutes</span>
           </div>
 
-          <div className='flex gap-x-1 bg-green-500 text-green-100 p-1 rounded'>
+          <div className='flex flex-col gap-x-1 bg-green-500 text-green-100 p-1 rounded'>
           <span>{props.remaingTime.seconds}</span>
           <span>Secondes</span>
           </div>

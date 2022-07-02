@@ -40,18 +40,23 @@ function App() {
  
   
   for(let i=0; i < races.length; i++) {
-    if(races[i].date > todaysDate) {
+    
+    if((todaysDate === races[i].date) || (races[i].date !== todaysDate && races[i].date > todaysDate)) {
+      
       nextRace = races[i];
       FirstPractice = races[i].FirstPractice.date;
       FirstPracticeTime = races[i].FirstPractice.time;
       SecondPractice = races[i].SecondPractice.date;
       SecondPracticeTime = races[i].SecondPractice.time;
-      ThirdPractice = races[i].ThirdPractice.date;
-      ThirdPracticeTime = races[i].ThirdPractice.time;
       Qualifying = races[i].Qualifying.date;
       QualifyingTime = races[i].Qualifying.time;
+      ThirdPractice = races[i].ThirdPractice.date;
+      ThirdPracticeTime = races[i].ThirdPractice.time;
       break;
-    }
+    }  
+
+    
+  
   }
  
   

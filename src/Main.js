@@ -3,10 +3,11 @@ import Upcoming from './Components/Upcoming'
 import Standings from './Components/Standings';
 import LatestResults from './Components/LatestResults';
 import Calender from './Components/Calender';
+import dayjs from 'dayjs'
 
 
 function Main() {
-
+  
   const [races, setRaces] = React.useState([]);
   let nextRace = [];
   const [drivesStanding, setDriversStanding] = React.useState([]);
@@ -20,6 +21,15 @@ function Main() {
   let today = new Date();
   let todaysDate = `${today.getFullYear()}-${today.getMonth()+1 < 10 ? `0${today.getMonth()+1}` : `${today.getMonth()+1}`}-${today.getDate() < 10 ? `0${today.getDate()}` : `${today.getDate()}`}`;
 
+
+  const nextRaceFullDate = {
+  year: '',
+  month: '',
+  day: '',
+  hour: '',
+  minutes: '',
+  second: '',
+  }
   const defaultRemainingTime = {
     seconds: '00',
     minutes: '00',
@@ -29,6 +39,17 @@ function Main() {
   
 const [remaingTime, SetRemainingTime] = React.useState(defaultRemainingTime);
 
+React.useEffect(() => {
+const intervalCountDown =  setInterval(() => {
+  updateCountdown()
+  }, 1000);
+
+  return () => clearInterval(intervalCountDown)
+},[])
+
+function updateCountdown() {
+
+}
 
   React.useEffect(() => {
    fetch('http://ergast.com/api/f1/current.json')
@@ -69,13 +90,20 @@ const [remaingTime, SetRemainingTime] = React.useState(defaultRemainingTime);
   },[])
   
   for(let i=0; i < races.length; i++) {
-    if(races[i].date > todaysDate) {
+    if(races[i].date >= todaysDate) {
       nextRace = races[i];
-      //console.log(nextRace)
+      let raceDate = nextRace.date.split('-');
+      console.log(nextRace.time.slice(0,-1)+'+03:00')
+      
+      nextRaceFullDate.year = raceDate[0];
+      nextRaceFullDate.month = raceDate[1];
+      nextRaceFullDate.day = raceDate[2];
       break;
     }
   }
+ 
 
+  console.log(nextRaceFullDate)
 
   return (
     <div className="container mx-auto gap-y-3 flex flex-col">

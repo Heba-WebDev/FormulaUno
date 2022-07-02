@@ -3,8 +3,7 @@ import React from 'react'
 
 
 export default function NextRace(props) {
-  
-       
+
     return (
 
         <div className='grid grid-col-2 gap-2 text-red-900'>
