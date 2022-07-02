@@ -20,7 +20,16 @@ function Main() {
   let today = new Date();
   let todaysDate = `${today.getFullYear()}-${today.getMonth()+1 < 10 ? `0${today.getMonth()+1}` : `${today.getMonth()+1}`}-${today.getDate() < 10 ? `0${today.getDate()}` : `${today.getDate()}`}`;
 
+  const defaultRemainingTime = {
+    seconds: '00',
+    minutes: '00',
+    hours: '00',
+    days: '00',
+}
   
+const [remaingTime, SetRemainingTime] = React.useState(defaultRemainingTime);
+
+
   React.useEffect(() => {
    fetch('http://ergast.com/api/f1/current.json')
     .then(response => response.json())
@@ -71,7 +80,7 @@ function Main() {
   return (
     <div className="container mx-auto gap-y-3 flex flex-col">
      
-    <Upcoming nextRace={nextRace}/> 
+    <Upcoming nextRace={nextRace} remaingTime={remaingTime}/> 
     <Standings 
     drivesStanding={drivesStanding} 
     constructorsStanding={constructorsStanding} 

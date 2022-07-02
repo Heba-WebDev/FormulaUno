@@ -19,6 +19,7 @@ export default function Upcoming(props) {
 
 //console.log(daysLeftInMonth);
     
+
     const raceDetails = props.nextRace.date;
    
     return (
@@ -50,22 +51,22 @@ export default function Upcoming(props) {
           <div className='self-center flex gap-x-3'>
 
           <div className='flex gap-x-1 bg-green-500 text-green-100 p-1 rounded'>
-          <span>30</span>
+          <span>{props.remaingTime.days}</span>
           <span>Days</span>
           </div>
 
           <div className='flex gap-x-1 bg-green-500 text-green-100 p-1 rounded'>
-          <span>12</span>
+          <span>{props.remaingTime.hours}</span>
           <span>Hours</span>
           </div>
           
           <div className='flex gap-x-1 bg-green-500 text-green-100 p-1 rounded'>
-          <span>04</span>
+          <span>{props.remaingTime.minutes}</span>
           <span>Minutes</span>
           </div>
 
           <div className='flex gap-x-1 bg-green-500 text-green-100 p-1 rounded'>
-          <span>10</span>
+          <span>{props.remaingTime.seconds}</span>
           <span>Secondes</span>
           </div>
 
