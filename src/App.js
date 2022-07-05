@@ -17,14 +17,18 @@ function App() {
   let today = new Date();
   let todaysDate = `${today.getFullYear()}-${today.getMonth()+1 < 10 ? `0${today.getMonth()+1}` : `${today.getMonth()+1}`}-${today.getDate() < 10 ? `0${today.getDate()}` : `${today.getDate()}`}`;
    
-  let FirstPractice = '';
-  let FirstPracticeTime = '';
-  let SecondPractice = '';
-  let SecondPracticeTime = '';
-  let ThirdPractice = '';
-  let ThirdPracticeTime = '';
-  let Qualifying = '';
-  let QualifyingTime = '';
+  let nextRaceDetails = {
+    FirstPractice: '',
+    FirstPracticeTime:'',
+    SecondPractice: '',
+    SecondPracticeTime: '',
+    ThirdPractice: '',
+    ThirdPracticeTime: '',
+    Qualifying: '',
+    QualifyingTime: '',
+    sprintRace: '',
+  }
+  
   
   React.useEffect(() => {
    fetch('http://ergast.com/api/f1/current.json')
@@ -44,14 +48,16 @@ function App() {
     if((todaysDate === races[i].date) || (races[i].date !== todaysDate && races[i].date > todaysDate)) {
       
       nextRace = races[i];
-      FirstPractice = races[i].FirstPractice.date;
-      FirstPracticeTime = races[i].FirstPractice.time;
-      SecondPractice = races[i].SecondPractice.date;
-      SecondPracticeTime = races[i].SecondPractice.time;
-      Qualifying = races[i].Qualifying.date;
-      QualifyingTime = races[i].Qualifying.time;
-      ThirdPractice = races[i].ThirdPractice.date;
-      ThirdPracticeTime = races[i].ThirdPractice.time;
+      nextRaceDetails.FirstPractice = races[i].FirstPractice.date;
+      nextRaceDetails.FirstPracticeTime = races[i].FirstPractice.time;
+      nextRaceDetails.SecondPractice = races[i].SecondPractice.date;
+      nextRaceDetails.SecondPracticeTime = races[i].SecondPractice.time;
+      nextRaceDetails.Qualifying = races[i].Qualifying.date;
+      nextRaceDetails.QualifyingTime = races[i].Qualifying.time;
+      nextRaceDetails.ThirdPractice = races[i].ThirdPractice ? races[i].ThirdPractice.date : '';
+      nextRaceDetails.ThirdPracticeTime = races[i].ThirdPractice ? races[i].ThirdPractice.time : '';
+      nextRaceDetails.sprintRace = races[i].Sprint ? races[i].Sprint.date : '';
+      nextRaceDetails.sprintRaceTime = races[i].Sprint ? races[i].Sprint.time : '';
       break;
     }  
 
@@ -66,14 +72,16 @@ function App() {
     <Route path='/' element={<Navbar />}>
     <Route index element={<Main />} />
     <Route path="next-race" element={<NextRace
-     first={FirstPractice}
-     firsttime={FirstPracticeTime}
-     second={SecondPractice}
-     secondtime={SecondPracticeTime}
-     third={ThirdPractice}
-     thirdtime={ThirdPracticeTime}
-     qualify={Qualifying}
-     qualifytime={QualifyingTime}
+     first={nextRaceDetails.FirstPractice}
+     firsttime={nextRaceDetails.FirstPracticeTime}
+     second={nextRaceDetails.SecondPractice}
+     secondtime={nextRaceDetails.SecondPracticeTime}
+     third={nextRaceDetails.ThirdPractice}
+     thirdtime={nextRaceDetails.ThirdPracticeTime}
+     qualify={nextRaceDetails.Qualifying}
+     qualifytime={nextRaceDetails.QualifyingTime}
+     sprintRace = {nextRaceDetails.sprintRace}
+     sprintRaceTime = {nextRaceDetails.sprintRaceTime}
      date={nextRace.date}
      time={nextRace.time}
     

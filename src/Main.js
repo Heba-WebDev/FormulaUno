@@ -4,6 +4,8 @@ import Standings from './Components/Standings';
 import LatestResults from './Components/LatestResults';
 import Calender from './Components/Calender';
 import dayjs from 'dayjs'
+import customParseFormat from 'dayjs'
+import objectSupport from 'dayjs'
 
 
 function Main() {
@@ -20,15 +22,15 @@ function Main() {
  
   let today = new Date();
   let todaysDate = `${today.getFullYear()}-${today.getMonth()+1 < 10 ? `0${today.getMonth()+1}` : `${today.getMonth()+1}`}-${today.getDate() < 10 ? `0${today.getDate()}` : `${today.getDate()}`}`;
-
+  dayjs.extend(customParseFormat)
+  dayjs.extend(objectSupport)
 
   const nextRaceFullDate = {
-  year: '',
   month: '',
   day: '',
   hour: '',
   minutes: '',
-  second: '',
+  seconds: '',
   }
   const defaultRemainingTime = {
     seconds: '00',
@@ -36,7 +38,7 @@ function Main() {
     hours: '00',
     days: '00',
 }
-  
+
 const [remaingTime, SetRemainingTime] = React.useState(defaultRemainingTime);
 
 React.useEffect(() => {
@@ -47,7 +49,7 @@ const intervalCountDown =  setInterval(() => {
   return () => clearInterval(intervalCountDown)
 },[])
 
-function updateCountdown() {
+function updateCountdown(nextRaceFullDate) {
 
 }
 
@@ -93,17 +95,22 @@ function updateCountdown() {
     if(races[i].date >= todaysDate) {
       nextRace = races[i];
       let raceDate = nextRace.date.split('-');
-      console.log(nextRace.time.slice(0,-1)+'+03:00')
+      let raceTime = nextRace.time.slice(0,-1);
+      raceTime = raceTime.split(':');
       
-      nextRaceFullDate.year = raceDate[0];
+      
+    
       nextRaceFullDate.month = raceDate[1];
       nextRaceFullDate.day = raceDate[2];
+      nextRaceFullDate.hour = raceTime[0];
+      nextRaceFullDate.minutes = raceTime[1];
+      nextRaceFullDate.seconds = raceTime[2];
       break;
     }
   }
  
-
-  console.log(nextRaceFullDate)
+  //console.log(dayjs(nextRace.date).diff(dayjs()))
+  //console.log(nextRaceFullDate)
 
   return (
     <div className="container mx-auto gap-y-3 flex flex-col">

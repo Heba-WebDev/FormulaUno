@@ -22,11 +22,12 @@ export default function NextRace(props) {
        </div>
 
        <div className='flex flex-col bg-yellow-400 rounded p-2'>
-       <small className='text-white'>3rd Practice</small>
-       <h4 className='m-auto text-l p-1'>{props.third.split('-').reverse().join('-')}</h4>
-       <h4 className='m-auto text-l p-1'>{props.thirdtime}</h4>
+       <small className='text-white'>{props.third && !props.sprintRace ? '3rd Practice' : 'Sprint Race'}</small>
+       <h4 className='m-auto text-l p-1'>{props.third.split('-').reverse().join('-') || props.sprintRace.split('-').reverse().join('-')}</h4>
+       <h4 className='m-auto text-l p-1'>{props.thirdtime || props.sprintRaceTime}</h4>
        </div>
       
+       
 
        <div className='flex flex-col bg-lime-300 rounded p-2'>
        <small className='text-white'>Qualifying</small>
