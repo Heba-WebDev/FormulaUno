@@ -3,9 +3,8 @@ import Upcoming from './Components/Upcoming'
 import Standings from './Components/Standings';
 import LatestResults from './Components/LatestResults';
 import Calender from './Components/Calender';
-import dayjs from 'dayjs'
-import customParseFormat from 'dayjs'
-import objectSupport from 'dayjs'
+
+
 
 
 function Main() {
@@ -23,8 +22,7 @@ function Main() {
  
   let today = new Date();
   let todaysDate = `${today.getFullYear()}-${today.getMonth()+1 < 10 ? `0${today.getMonth()+1}` : `${today.getMonth()+1}`}-${today.getDate() < 10 ? `0${today.getDate()}` : `${today.getDate()}`}`;
-  dayjs.extend(customParseFormat)
-  dayjs.extend(objectSupport)
+  
 
   
 
@@ -79,69 +77,48 @@ const [remaingTime, SetRemainingTime] = React.useState({
   for(let i=0; i < races.length; i++) {
     if(races[i].date >= todaysDate) {
       nextRace = races[i];
-   // setNextRaceTimeStamp(dayjs(`${nextRace.date}T${nextRace.time}`))
-      
       break;
     }
   }
  
-  React.useEffect(() => {
-    setNextRaceTimeStamp(dayjs(`${nextRace.date}T${nextRace.time}`))
-    const intervalCountDown =  setInterval(() => {
-      updateCountdown(nextRaceTimeStamp)
-      }, 1000);
-    
-      return () => clearInterval(intervalCountDown)
-    },[])
-    
-    function updateCountdown(nextRaceInMilisec) {
-      let nextRaceTime = nextRaceTimeStamp;
-      let nowDayjs = dayjs();
-     
-    //console.log(nextRaceTime.diff(nowDayjs, 'seconds') % 60)
+  let interval;
 
-      SetRemainingTime({
-     //  seconds: nextRaceTime.diff(nowDayjs, 'seconds') % 60,
-      // minutes: nextRaceTime.diff(nowDayjs, 'minutes') % 60,
-      //  hours: getRemainingHours(nowDayjs, nextRaceTime),
-      //  days: getRemainingDays(nowDayjs, nextRaceTime),
-      })
-   //console.log(nextRaceTimeStamp)
-     
-     //console.log(getRemainingSeconds(nowDayjs, nextRaceTime))
-      // console.log( getRemainingMinutes(nowDayjs, nextRaceTime))
-    //  console.log(  getRemainingHours(nowDayjs, nextRaceTime))
-        //console.log(getRemainingDays(nowDayjs, nextRaceTime))
-      
-      
-    }
 
-    function getRemainingSeconds(nowDayjs, raceTimeStamp) {
-    const seconds = raceTimeStamp.diff(nowDayjs, 'seconds') % 60;
-
-    return seconds;
-    }
-
-    function getRemainingMinutes(nowDayjs, raceTimeStamp) {
-      const minutes = raceTimeStamp.diff(nowDayjs, 'minutes') % 60;
-
-      return minutes;
-    }
-
-    function getRemainingHours(nowDayjs, raceTimeStamp) {
-      const hours = raceTimeStamp.diff(nowDayjs, 'hours') % 24;
-
-      return hours;
-    }
-
-    function getRemainingDays(nowDayjs, raceTimeStamp) {
-      const days = raceTimeStamp.diff(nowDayjs, 'days');
-
-      return days;
-    }
+  const startCountDown = () => {
+  let raceUtcTime = new Date(`${nextRace.date}T${nextRace.time}`);
+  let raceLocalTime = new Date(raceUtcTime.toLocaleString());
+  let days, hours, minutes, seconds;
   
-  //console.log(dayjs(`${nextRace.date}T${nextRace.time}`))
-  //console.log(nextRaceFullDate)
+  interval = setInterval(() => {
+    let now = new Date();
+    let difference = raceLocalTime - now;
+    if(difference) {
+       days = Math.floor(difference/(24*60*60*1000));
+       hours = Math.floor(difference % (24*60*60*1000)/(60*60*1000));
+        minutes = Math.floor(difference % (60*60*1000)/(60*1000));
+        seconds = Math.floor(difference % (60*1000)/(1000));
+    }
+    
+    if(difference < 0) {
+      clearInterval(interval)
+    } else {
+      SetRemainingTime({
+        days: days,
+        hours: hours,
+        minutes: minutes,
+        seconds:seconds,
+      })
+    }
+  }, 1000);
+  }
+ 
+
+   
+
+   React.useEffect(() => {
+    startCountDown()
+  })
+
 
   return (
     <div className="container mx-auto gap-y-3 flex flex-col">

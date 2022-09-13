@@ -52,22 +52,22 @@ export default function Upcoming(props) {
           <div className='flex gap-x-3'>
 
           <div className='flex flex-col gap-x-1 bg-green-500 text-green-100 p-1 rounded'>
-          <span className='m-auto text-xl'>{props.remaingTime.days}</span>
+          <span className='m-auto text-xl'>{props.remaingTime?.days}</span>
           <span className='m-auto text-xs'>Days</span>
           </div>
 
           <div className='flex flex-col gap-x-1 bg-green-500 text-green-100 p-1 rounded'>
-          <span className='m-auto text-xl'>{props.remaingTime.hours}</span>
+          <span className='m-auto text-xl'>{props.remaingTime?.hours}</span>
           <span className='m-auto text-xs'>Hours</span>
           </div>
           
           <div className='flex flex-col gap-x-1 bg-green-500 text-green-100 p-1 rounded'>
-          <span className='m-auto text-xl'>{props.remaingTime.minutes}</span>
+          <span className='m-auto text-xl'>{props.remaingTime?.minutes}</span>
           <span className='m-auto text-xs'>Minutes</span>
           </div>
 
           <div className='flex flex-col gap-x-1 bg-green-500 text-green-100 p-1 rounded'>
-          <span className='m-auto text-xl'>{props.remaingTime.seconds}</span>
+          <span className='m-auto text-xl'>{props.remaingTime?.seconds}</span>
           <span className='m-auto text-xs'>Secondes</span>
           </div>
 
