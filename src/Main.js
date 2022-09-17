@@ -28,10 +28,10 @@ function Main() {
 
 
 const [remaingTime, SetRemainingTime] = React.useState({
-  seconds: '00',
-    minutes: '00',
-    hours: '00',
-    days: '00',
+  seconds: '0',
+    minutes: '0',
+    hours: '0',
+    days: '0',
 });
 
 
