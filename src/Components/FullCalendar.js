@@ -2,8 +2,9 @@ import React from 'react';
 
 
 export default function FullCalender(props) {
-
-   const racesArr = props.races.races;
+ 
+  
+   
     const [races, setRaces] = React.useState([]);
     
     React.useEffect(() => {
@@ -14,6 +15,16 @@ export default function FullCalender(props) {
          })
           .catch(error => console.log(error))
        },[])
+
+           
+    React.useEffect(() => {
+      fetch('http://ergast.com/api/f1/2022/16/results.json')
+       .then(response => response.json())
+       .then(data => {
+         console.log(data.MRData.RaceTable.Races);
+       })
+        .catch(error => console.log(error))
+     },[])
 
     return (
         <div className='container m-auto'>
@@ -31,8 +42,9 @@ export default function FullCalender(props) {
          </div>
            <div className='w-full p-1 flex justify-center'>
            <small>{race.date}</small>
+           
            </div>
-                
+  
             </div>
           )
       })}

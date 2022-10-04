@@ -18,7 +18,7 @@ function Main() {
   const [driversOrConstructers, setDriversOrConstructers] = React.useState(true);
   const [latestResults, setLatestResults] = React.useState([]);
   const [lastRace, setLastRace] = React.useState('');
-  const [nextRaceTimeStamp, setNextRaceTimeStamp] = React.useState('');
+  
  
   let today = new Date();
   let todaysDate = `${today.getFullYear()}-${today.getMonth()+1 < 10 ? `0${today.getMonth()+1}` : `${today.getMonth()+1}`}-${today.getDate() < 10 ? `0${today.getDate()}` : `${today.getDate()}`}`;
