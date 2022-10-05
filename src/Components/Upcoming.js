@@ -51,24 +51,24 @@ export default function Upcoming(props) {
           
           <div className='flex gap-x-3 mt-3 md:mt-0 justify-center align-center'>
 
-          <div className='flex flex-col gap-x-1 bg-green-500 text-green-100 p-1 rounded'>
+          <div className='flex flex-col gap-x-1 text-green-500 p-1 rounded'>
           <span className='m-auto text-xl'>{props.remaingTime?.days < 10 ? `0${props.remaingTime?.days}` : props.remaingTime?.days}</span>
-          <span className='m-auto text-xs'>D</span>
+          <span className='m-auto text-xs'>Days</span>
           </div>
 
-          <div className='flex flex-col gap-x-1 bg-green-500 text-green-100 p-1 rounded'>
+          <div className='flex flex-col gap-x-1 text-green-500 p-1 rounded'>
           <span className='m-auto text-xl'>{props.remaingTime?.hours < 10 ? `0${props.remaingTime?.hours}` : props.remaingTime?.hours}</span>
-          <span className='m-auto text-xs'>H</span>
+          <span className='m-auto text-xs'>Hours</span>
           </div>
           
-          <div className='flex flex-col gap-x-1 bg-green-500 text-green-100 p-1 rounded'>
+          <div className='flex flex-col gap-x-1 text-green-500 p-1 rounded'>
           <span className='m-auto text-xl'>{props.remaingTime?.minutes < 10 ? `0${props.remaingTime?.minutes}`: props.remaingTime?.minutes}</span>
-          <span className='m-auto text-xs'>M</span>
+          <span className='m-auto text-xs'>Minutes</span>
           </div>
 
-          <div className='flex flex-col gap-x-1 bg-green-500 text-green-100 p-1 rounded'>
+          <div className='flex flex-col gap-x-1 text-green-500 p-1 rounded'>
           <span className='m-auto text-xl'>{props.remaingTime?.seconds < 10 ? `0${props.remaingTime?.seconds}` : props.remaingTime?.seconds}</span>
-          <span className='m-auto text-xs'>S</span>
+          <span className='m-auto text-xs'>Seconds</span>
           </div>
 
           </div>

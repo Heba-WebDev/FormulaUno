@@ -132,7 +132,7 @@ const [remaingTime, SetRemainingTime] = React.useState({
     driversOrConstructers={driversOrConstructers}
     />
     <LatestResults latestResults={latestResults} lastRace={lastRace}/>
-    <Calender />
+    <Calender nextRace={nextRace}/>
     </div>
    
     
