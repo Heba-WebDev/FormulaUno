@@ -6,6 +6,7 @@ import FullCalender from './Components/FullCalendar';
 import NextRace from './Components/NextRace';
 import Navbar from './Components/Navbar';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import RaceResults from './Components/RaceResults';
 
 
 function App() {
@@ -88,7 +89,8 @@ function App() {
      />} />
     <Route path="driver-standings" element={<DriverStandings />} />
     <Route path="constructor-standings" element={<ConstructorStandings />} />
-    <Route path="calendar" element={<FullCalender races={{races}}/>} />
+    <Route path="calender" element={<FullCalender races={{races}}/>}/>
+    <Route path='calender/:raceId' element={<RaceResults />} />
     </Route>
     </Routes>
     </BrowserRouter>
