@@ -1,31 +1,34 @@
 import React from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-export default function RaceResults() {
+export default function RaceResults(props) {
  
     const {raceId} = useParams();
     const date = new Date();
+    let todaysDate = `${date.getFullYear()}-${date.getMonth()+1 < 10 ? `0${date.getMonth()+1}` : `${date.getMonth()+1}`}-${date.getDate() < 10 ? `0${date.getDate()}` : `${date.getDate()}`}`;
     const currentYear = date.getFullYear();
     const [fullResults, setFullResults] = React.useState([]);
-    //const location = useLocation();
-   
+  
+    
     React.useEffect(() => {
       fetch(`http://ergast.com/api/f1/${currentYear}/${raceId}/results.json`)
        .then(response => response.json())
        .then(data => {
-         setFullResults(data.MRData.RaceTable.Races[0].Results)
+  
+        setFullResults(data.MRData.RaceTable.Races[0].Results) 
+      
        })
         .catch(error => console.log(error))
-     }, [])
+     })
     
     return (
     
         <>
-       {fullResults.length === 0 &&
-        <div className='container m-auto'>Yet to take place</div>}
+       {props.nextRace.date > todaysDate &&
+        <div className='container m-auto'>Yet to take place </div>}
         
     
-        {fullResults.length !== 0 &&
+        {props.nextRace.date < todaysDate &&
      <div className='container m-auto'>
 
       

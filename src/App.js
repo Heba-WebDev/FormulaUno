@@ -90,7 +90,7 @@ function App() {
     <Route path="driver-standings" element={<DriverStandings />} />
     <Route path="constructor-standings" element={<ConstructorStandings />} />
     <Route path="calender" element={<FullCalender races={{races}}/>}/>
-    <Route path='calender/:raceId' element={<RaceResults />} />
+    <Route path='calender/:raceId' element={<RaceResults nextRace={nextRace} />} />
     </Route>
     </Routes>
     </BrowserRouter>

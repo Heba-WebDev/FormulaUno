@@ -19,15 +19,15 @@ export default function FullCalender(props) {
 
            
     
-
+   
     return (
         <div className='container m-auto'>
 
       {races.map((race) => {
-          
+           
           return (
             <Link to={`/calender/${race.round}`}
-            state={race.date > todaysDate ? true : false} 
+            state={race.date > todaysDate} 
             key={race.Circuit.circuitId}
            className='bg-slate-50 text-left flex
             content-start mb-1'>
