@@ -13,11 +13,6 @@ function Main() {
   
   const [races, setRaces] = useState([]);
   let nextRace = [];
-  const [drivesStanding, setDriversStanding] = useState([]);
-  const [constructorsStanding, setConstructorsStanding] = useState([]);
-  //when the app loads on, it will show the drivers standing, user can then 
-  //change to constructer standings and the state will go from true to false
-  const [driversOrConstructers, setDriversOrConstructers] = useState(true);
   const [latestResults, setLatestResults] = useState([]);
   const [lastRace, setLastRace] = useState('');
   
@@ -43,25 +38,6 @@ function Main() {
   },[])
 
 
-
-  useEffect(() => {
-    fetch('http://ergast.com/api/f1/current/driverStandings.json')
-    .then(response => response.json())
-    .then(data => {
-     // console.log(data.MRData.StandingsTable.StandingsLists[0].DriverStandings)
-      setDriversStanding(data.MRData.StandingsTable.StandingsLists[0].DriverStandings)
-    })
-    .catch(error => console.log(error))
-  },[])
-
-  useEffect(() => {
-    fetch('http://ergast.com/api/f1/current/constructorStandings.json')
-    .then(response => response.json())
-    .then(data => {
-  // console.log(data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings)
-     setConstructorsStanding(data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings)
-    })
-  },[])
 
   
 
@@ -130,12 +106,7 @@ function Main() {
    
     
     <Upcoming races={races}/> 
-    <Standings 
-    drivesStanding={drivesStanding} 
-    constructorsStanding={constructorsStanding} 
-    setDriversOrConstructers={setDriversOrConstructers}
-    driversOrConstructers={driversOrConstructers}
-    />
+    <Standings />
     <LatestResults latestResults={latestResults} lastRace={lastRace}/>
     <Calender nextRace={nextRace}/>
     

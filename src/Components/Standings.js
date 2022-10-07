@@ -1,15 +1,42 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 
-export default function Standings(props) {
+export default function Standings() {
+
+  const [drivesStanding, setDriversStanding] = useState([]);
+  const [constructorsStanding, setConstructorsStanding] = useState([]);
+  //when the app loads on, it will show the drivers standing, user can then 
+  //change to constructer standings and the state will go from true to false
+  const [driversOrConstructers, setDriversOrConstructers] = useState(true);
+
+  useEffect(() => {
+    fetch('http://ergast.com/api/f1/current/driverStandings.json')
+    .then(response => response.json())
+    .then(data => {
+     // console.log(data.MRData.StandingsTable.StandingsLists[0].DriverStandings)
+      setDriversStanding(data.MRData.StandingsTable.StandingsLists[0].DriverStandings)
+    })
+    .catch(error => console.log(error))
+  },[])
+
+  useEffect(() => {
+    fetch('http://ergast.com/api/f1/current/constructorStandings.json')
+    .then(response => response.json())
+    .then(data => {
+  // console.log(data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings)
+     setConstructorsStanding(data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings)
+    })
+  },[])
 
 
   function changeStandings() {
-    props.setDriversOrConstructers(prev => !prev)
+    setDriversOrConstructers(prev => !prev)
   }
 
-  const topThreeDrivers = props.drivesStanding.slice(0,3);
-  const topThreeConstructors = props.constructorsStanding.slice(0,3);
+  const topThreeDrivers = drivesStanding.slice(0,3);
+  const topThreeConstructors = constructorsStanding.slice(0,3);
+
+
 
   return (
 
@@ -19,10 +46,10 @@ export default function Standings(props) {
      {/* 1 */}
     <div className='flex gap-1 text-l p-3 bg-zinc-50 rounded justify-around mb-6'>
         <div className=''>
-        <h3 className={props.driversOrConstructers ? 'selected' : 'text-gray-300'} onClick={changeStandings}>Drivers</h3>
+        <h3 className={driversOrConstructers ? 'selected' : 'text-gray-300'} onClick={changeStandings}>Drivers</h3>
         </div>
         <div className=''>
-        <h3 className={!props.driversOrConstructers ? 'selected' : 'text-gray-300'} onClick={changeStandings}>Constructors</h3>
+        <h3 className={!driversOrConstructers ? 'selected' : 'text-gray-300'} onClick={changeStandings}>Constructors</h3>
         </div>
     </div>
     
@@ -30,7 +57,7 @@ export default function Standings(props) {
     {/* 2 */}
     
     <div className=''>
-        {props.driversOrConstructers && 
+        {driversOrConstructers && 
         
         topThreeDrivers.map((driver) => {
            return (
@@ -58,7 +85,7 @@ export default function Standings(props) {
 {/* 3 */}
 
 <div className=''>
-{!props.driversOrConstructers && 
+{!driversOrConstructers && 
         
         topThreeConstructors.map((constructor) => {
            return (
@@ -85,7 +112,7 @@ export default function Standings(props) {
         <div>
 
             
-          {props.driversOrConstructers &&
+          {driversOrConstructers &&
           
           
           <Link className='mt-6' to='/driver-standings'>
@@ -99,7 +126,7 @@ export default function Standings(props) {
         <div>
 
             
-{!props.driversOrConstructers &&
+{!driversOrConstructers &&
 
 
 <Link to='/constructor-standings' className='mt-6'> 
