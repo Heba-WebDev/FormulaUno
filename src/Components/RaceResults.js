@@ -24,11 +24,9 @@ export default function RaceResults(props) {
     return (
     
         <>
-       {props.nextRace.date > todaysDate &&
-        <div className='container m-auto'>Yet to take place </div>}
-        
+      
     
-        {props.nextRace.date < todaysDate &&
+       
      <div className='container m-auto'>
 
       
@@ -93,6 +91,6 @@ export default function RaceResults(props) {
                     </div>
                 )
             })}
-        </div>}
+        </div>
     </>)
 }
