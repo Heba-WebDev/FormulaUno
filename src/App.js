@@ -7,10 +7,11 @@ import NextRace from './Components/NextRace';
 import Navbar from './Components/Navbar';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RaceResults from './Components/RaceResults';
-
+import {QueryClient, QueryClientProvider,} from '@tanstack/react-query';
 
 function App() {
 
+  const queryClient = new QueryClient();
   const [races, setRaces] = React.useState([]);
   let nextRace = [];
   
@@ -68,6 +69,8 @@ function App() {
  
   
   return (
+
+    <QueryClientProvider client={queryClient}>
     <BrowserRouter>
     <Routes>
     <Route path='/' element={<Navbar />}>
@@ -94,7 +97,7 @@ function App() {
     </Route>
     </Routes>
     </BrowserRouter>
-   
+    </QueryClientProvider>
     
   );
 }

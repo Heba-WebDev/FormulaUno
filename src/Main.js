@@ -13,8 +13,8 @@ function Main() {
   
   const [races, setRaces] = useState([]);
   let nextRace = [];
-  const [latestResults, setLatestResults] = useState([]);
-  const [lastRace, setLastRace] = useState('');
+  //const [latestResults, setLatestResults] = useState([]);
+ // const [lastRace, setLastRace] = useState('');
   
  
   let today = new Date();
@@ -41,15 +41,15 @@ function Main() {
 
   
 
-  useEffect(() => {
-    fetch('http://ergast.com/api/f1/current/last/results.json')
-    .then(response => response.json())
-    .then(data => {
+  // useEffect(() => {
+  //   fetch('http://ergast.com/api/f1/current/last/results.json')
+  //   .then(response => response.json())
+  //   .then(data => {
   
-   setLatestResults(data.MRData.RaceTable.Races[0].Results)
-   setLastRace(data.MRData.RaceTable.Races[0].raceName)
-    })
-  },[])
+  //  setLatestResults(data.MRData.RaceTable.Races[0].Results)
+  //  setLastRace(data.MRData.RaceTable.Races[0].raceName)
+  //   })
+  // },[])
   
   for(let i=0; i < races.length; i++) {
     if(races[i].date >= todaysDate) {
@@ -101,16 +101,11 @@ function Main() {
 
   
     <div className="container mx-auto gap-y-3 flex flex-col">
-     
-    
-   
-    
+
     <Upcoming races={races}/> 
     <Standings />
-    <LatestResults latestResults={latestResults} lastRace={lastRace}/>
+    <LatestResults />
     <Calender nextRace={nextRace}/>
-    
-    
 
     </div>
   
