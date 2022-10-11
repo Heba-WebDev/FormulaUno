@@ -1,25 +1,52 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import {useQuery} from '@tanstack/react-query'
 
 export default function RaceResults(props) {
  
     const {raceId} = useParams();
     const date = new Date();
-    let todaysDate = `${date.getFullYear()}-${date.getMonth()+1 < 10 ? `0${date.getMonth()+1}` : `${date.getMonth()+1}`}-${date.getDate() < 10 ? `0${date.getDate()}` : `${date.getDate()}`}`;
     const currentYear = date.getFullYear();
-    const [fullResults, setFullResults] = React.useState([]);
   
+  
+
+    const fetchFullResults = async () => {
+        const response = await fetch(`http://ergast.com/api/f1/${currentYear}/${raceId}/results.json`);
+        return response.json();
+    }
     
-    React.useEffect(() => {
-      fetch(`http://ergast.com/api/f1/${currentYear}/${raceId}/results.json`)
-       .then(response => response.json())
-       .then(data => {
+    const full = useQuery(['fullResults'], fetchFullResults);
+
+    if(full.isLoading) {
+        return <div>Loading ...</div>
+    }
+
+    if(full.isError) {
+        return <div>Error ...</div>
+    }
+
+    if(!full.isSuccess) {
+        return <div>Yet to take place ...</div>
+    }
+   
+    
+
+    // React.useEffect(() => {
+    //   fetch(`http://ergast.com/api/f1/${currentYear}/${raceId}/results.json`)
+    //    .then(response => response.json())
+    //    .then(data => {
   
-        setFullResults(data.MRData.RaceTable.Races[0].Results) 
+    //     setFullResults(data.MRData.RaceTable.Races[0].Results) 
       
-       })
-        .catch(error => console.log(error))
-     })
+    //    })
+    //     .catch(error => console.log(error))
+    //  })
+
+   if(full.data.MRData.RaceTable.Races.length === 0) {
+    return <div>This race is yet to take place ...</div>
+   }
+
+  
     
     return (
     
@@ -58,7 +85,7 @@ export default function RaceResults(props) {
        
 
         
-            {fullResults.map((position) => {
+            {full.data.MRData.RaceTable.Races[0].Results.map((position) => {
             
                 return (
 
@@ -93,4 +120,4 @@ export default function RaceResults(props) {
             })}
         </div>
     </>)
-}
+} 
