@@ -1,6 +1,8 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 
+
+
 export default function ConstructorStandings(props) {
 
     // const [constructorsStanding, setConstructorsStanding] = React.useState([]);

@@ -1,41 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-
+import useFetchStanding from '../Hooks/useFetchData';
 export default function Standings() {
-
-  const [drivesStanding, setDriversStanding] = useState([]);
-  const [constructorsStanding, setConstructorsStanding] = useState([]);
-  //when the app loads on, it will show the drivers standing, user can then 
-  //change to constructer standings and the state will go from true to false
+  const drivesStanding = useFetchStanding();
+  
+  const constructorsStanding = useFetchStanding("constructorStandings");
   const [driversOrConstructers, setDriversOrConstructers] = useState(true);
-
-  useEffect(() => {
-    fetch('http://ergast.com/api/f1/current/driverStandings.json')
-    .then(response => response.json())
-    .then(data => {
-     // console.log(data.MRData.StandingsTable.StandingsLists[0].DriverStandings)
-      setDriversStanding(data.MRData.StandingsTable.StandingsLists[0].DriverStandings)
-    })
-    .catch(error => console.log(error))
-  },[])
-
-  useEffect(() => {
-    fetch('http://ergast.com/api/f1/current/constructorStandings.json')
-    .then(response => response.json())
-    .then(data => {
-  // console.log(data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings)
-     setConstructorsStanding(data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings)
-    })
-  },[])
-
-
   function changeStandings() {
     setDriversOrConstructers(prev => !prev)
   }
 
-  const topThreeDrivers = drivesStanding.slice(0,3);
-  const topThreeConstructors = constructorsStanding.slice(0,3);
 
+
+ 
 
 
   return (
@@ -55,11 +32,11 @@ export default function Standings() {
     
 
     {/* 2 */}
-    
+    {constructorsStanding &&  console.log( constructorsStanding.slice(0,3))}
     <div className=''>
         {driversOrConstructers && 
-        
-        topThreeDrivers.map((driver) => {
+       
+        drivesStanding.slice(0,3).map((driver) => {
            return (
                <div key={driver.Driver.driverId} className='bg-slate-50 text-left flex
                content-start mb-1'>
@@ -87,7 +64,7 @@ export default function Standings() {
 <div className=''>
 {!driversOrConstructers && 
         
-        topThreeConstructors.map((constructor) => {
+        constructorsStanding.slice(0,3).map((constructor) => {
            return (
                <div key={constructor.Constructor.constructorId} className='bg-slate-50 text-left flex 
                mb-1'>

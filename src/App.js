@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RaceResults from './Components/RaceResults';
 import {QueryClient, QueryClientProvider,} from '@tanstack/react-query';
 
+
 function App() {
 
   const queryClient = new QueryClient();
