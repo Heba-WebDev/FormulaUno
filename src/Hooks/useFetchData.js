@@ -9,7 +9,7 @@ export default function useFetchData(url) {
          .then(data => {
            setData(data.MRData.RaceTable.Races);
          })
-          .catch(error => console.log(error))
+          .catch(error => error)
        },[url])
 
        return data;

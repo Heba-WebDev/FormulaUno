@@ -2,19 +2,39 @@ import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import useFetchStanding from '../Hooks/useFetchData';
 export default function Standings() {
-  const drivesStanding = useFetchStanding();
+
   
-  const constructorsStanding = useFetchStanding("constructorStandings");
+  
   const [driversOrConstructers, setDriversOrConstructers] = useState(true);
   function changeStandings() {
     setDriversOrConstructers(prev => !prev)
   }
-
-
-
  
 
+  const [drivesStanding, setDriversStanding] = useState([]);
+  const [constructorsStanding, setConstructorsStanding] = useState([]);
+ const currentYear = new Date().getFullYear();
 
+ useEffect(() => {
+  fetch(`http://ergast.com/api/f1/${currentYear}/driverStandings.json`)
+   .then(response => response.json())
+   .then(data => {
+    setDriversStanding(data.MRData.StandingsTable.StandingsLists[0].DriverStandings);
+   })
+    .catch(error => error)
+ },[])
+
+ useEffect(() => {
+  fetch(`http://ergast.com/api/f1/${currentYear}/constructorStandings.json`)
+   .then(response => response.json())
+   .then(data => {
+    setConstructorsStanding(data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings
+      );
+   })
+    .catch(error => error)
+ },[])
+
+ 
   return (
 
     <div className='bg-zinc-100 rounded p-4 flex flex-col'>
@@ -32,7 +52,7 @@ export default function Standings() {
     
 
     {/* 2 */}
-    {constructorsStanding &&  console.log( constructorsStanding.slice(0,3))}
+    
     <div className=''>
         {driversOrConstructers && 
        

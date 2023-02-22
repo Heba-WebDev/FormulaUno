@@ -1,13 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
 import Spinner from "../BootsrapComponents/Spinner"
-import useFetchStanding from "../Hooks/useFetchStanding"
+
 export default function DriverStandings() {
 
       const fetchDriverStandings = async () => {
         const response = await fetch(`http://ergast.com/api/f1/${new Date().getFullYear()}/driverStandings.json`) ;
         return response.json()
       }
-    
+
+   
       
       const driverStandings = useQuery(['dirverStandings'], fetchDriverStandings);
     

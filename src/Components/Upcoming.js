@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom'
 import useCurrentDate from '../Hooks/useCurrentDate';
-export default function Upcoming(props) {
-
-
+import useFetchData from '../Hooks/useFetchData';
+export default function Upcoming() {
+   const currentYear = new Date().getFullYear();
+   const races = useFetchData(`http://ergast.com/api/f1/${currentYear}.json`);
    let nextRace = [];
   
   let todaysDate = useCurrentDate();
@@ -14,9 +15,9 @@ export default function Upcoming(props) {
       days: '0',
   });
 
-  for(let i=0; i < props.races.length; i++) {
-    if(props.races[i].date >= todaysDate) {
-      nextRace = props.races[i];
+  for(let i=0; i < races.length; i++) {
+    if(races[i].date >= todaysDate) {
+      nextRace = races[i];
       break;
     }
   }
@@ -56,6 +57,7 @@ export default function Upcoming(props) {
     startCountDown()
   })
 
+ 
 
     return (
         <Link  to='next-race'>
